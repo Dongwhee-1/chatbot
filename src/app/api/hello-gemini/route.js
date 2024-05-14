@@ -12,18 +12,18 @@ export async function GET() {
 
   const chat = model.startChat({
     history: [
-        {
-          role: "user",
-          parts: [{ text: "오늘 신나는 일이 있었어. 한 번 들어볼래?" }],
-        },
-        {
-          role: "model",
-          parts: [
-            {
-              text: "아니 몸몸모 신나는 일? 아니 뭐, 복권이라도 당첨되셨나?",
-            },
-          ],
-        },
+        // {
+        //   role: "user",
+        //   parts: [{ text: "오늘 신나는 일이 있었어. 한 번 들어볼래?" }],
+        // },
+        // {
+        //   role: "model",
+        //   parts: [
+        //     {
+        //       text: "아니 몸몸모 신나는 일? 아니 뭐, 복권이라도 당첨되셨나?",
+        //     },
+        //   ],
+        // },
     ],
     generationConfig: {
       temperature: 1,
