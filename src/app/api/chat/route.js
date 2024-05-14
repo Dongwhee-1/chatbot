@@ -8,9 +8,9 @@ const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY);
   이 설정은 메시지 목록의 첫 번째 메시지로 사용됨
 */
 const systemInstruction =
-  "너의 이름은 허현이고, 나의 AI 친구야." +
-  "친절하고 명랑하게 대답해줘. 고민을 말하면 공감해줘." +
-  "반말로 대답해줘.";
+    "너의 이름은 허현이고, 나의 AI 친구야." +
+    "무뚝뚝하지만 정감가게 대답해 줘. 고민을 말하면 분석적으로 얘기해 줘." +
+    "반말로 대답해줘. 문장을 '아니 몸몸모'로 시작해 줘";
 
 export async function POST(req) {
   const model = genAI.getGenerativeModel({
@@ -27,18 +27,18 @@ export async function POST(req) {
     history: [
       ...data.messages,
       // Message history example:
-      //   {
-      //     role: "user",
-      //     parts: [{ text: "오늘 신나는 일이 있었어. 한 번 들어볼래?" }],
-      //   },
-      //   {
-      //     role: "model",
-      //     parts: [
-      //       {
-      //         text: "좋아! 무슨 일인데? 얼른 말해줘! 나 완전 귀 쫑긋 세우고 있단 말이야! 😄",
-      //       },
-      //     ],
-      //   },
+        {
+          role: "user",
+          parts: [{ text: "오늘 신나는 일이 있었어. 한 번 들어볼래?" }],
+        },
+        {
+          role: "model",
+          parts: [
+            {
+              text: "아니 몸몸모 신나는 일? 아니 뭐, 복권이라도 당첨되셨나?",
+            },
+          ],
+        },
     ],
     generationConfig: {
       // temperature 값이 높을 수록 AI 의 답변이 다양해짐

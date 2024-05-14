@@ -5,6 +5,20 @@ import { useEffect, useRef, useState } from "react";
 
 import { Chat } from "@/components/Chat";
 
+import { db } from "@/firebase";
+import {
+  collection,
+  query,
+  doc,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
+
+const chatLog = collection(db, "messages");
+
+
 export default function Home() {
   /*
     메시지 목록을 저장하는 상태로, 메시지의 형태는 다음과 같음
@@ -37,6 +51,13 @@ export default function Home() {
     // console.log(updatedMessages);
     // console.log(updatedMessages.slice(-6));
 
+    // firebase에 메시지 저장
+    addDoc(chatLog, {
+      id: new Date(),
+      role: message.role,
+      text: message.parts[0].text,
+    });
+
     setMessages(updatedMessages);
     // 메시지 전송 중임을 표시
     setLoading(true);
@@ -67,7 +88,11 @@ export default function Home() {
       return;
     }
 
-    // console.log(result);
+    addDoc(chatLog, {
+      id: new Date(),
+      role: result.role,
+      text: result.parts[0].text,
+    });
 
     // 로딩 상태를 해제하고, 메시지 목록에 응답을 추가
     setLoading(false);
@@ -80,7 +105,7 @@ export default function Home() {
     setMessages([
       {
         role: "model",
-        parts: [{ text: "안녕? 나는 허현이야. 오늘은 무슨 일이 있었니?" }],
+        parts: [{ text: "안녕? 나는 허현이야. 아니 몸몸모 무슨 일이야." }],
       },
     ]);
   };
@@ -98,8 +123,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>A Simple Chatbot</title>
-        <meta name="description" content="A Simple Chatbot" />
+        <title>Huh? Hyun</title>
+        <meta name="description" content="Huh? Hyun" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -111,7 +136,7 @@ export default function Home() {
               className="ml-2 hover:opacity-50"
               href="https://code-scaffold.vercel.app"
             >
-              A Simple Chatbot
+              Huh? Hyun
             </a>
           </div>
         </div>
