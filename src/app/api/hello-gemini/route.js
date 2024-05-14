@@ -34,13 +34,13 @@ export async function GET() {
   //   const msg = "오늘 신나는 일이 있었어. 한 번 들어볼래?";
   //   const msg = "내가 무슨 말을 하고 있었지?";
 
-  const result = await chat.sendMessage(msg);
-  const response = await result.response;
-  const text = response.text();
-  //   console.log(response.candidates[0].content);
-  console.log(text);
+//   const result = await chat.sendMessage(msg);
+//   const response = await result.response;
+//   const text = response.text();
+//   //   console.log(response.candidates[0].content);
+//   console.log(text);
 
-  return Response.json({
-    message: text,
-  });
+//   return Response.json({
+//     message: text,
+//   });
 }
